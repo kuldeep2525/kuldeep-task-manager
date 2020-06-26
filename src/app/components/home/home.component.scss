@@ -1,0 +1,13 @@
+//**************************** STYLING FOR TASK MANAGER PARENT COMPONENT ****************************
+.task-manager-container {
+    .app-title {
+      background-color: #121514;
+      font-weight: bold;
+      .app-name {
+        background: -webkit-linear-gradient(#13f7f4, #2af598);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+      }
+    }
+  }
