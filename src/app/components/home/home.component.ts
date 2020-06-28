@@ -7,7 +7,7 @@ import { AppState } from '../../state/app.state'
 import { AddTaskDialogComponent } from '../dialogs/add-task-dialog/add-task-dialog.component';
 import { AppConstants } from '../../constants/app.constants';
 import { NGXLogger } from 'ngx-logger';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +20,10 @@ export class HomeComponent implements OnInit {
   inProgressList = [];
   doneList = [];
   appName = AppConstants.LABLES.APPNAME
+  errorTitle = AppConstants.ERRORMESSGES.ERRORTITLE;
+  taskExistsError = AppConstants.ERRORMESSGES.TASKREQUIRED;
 
-  constructor(private confirmationDialogService: ConfirmationDialogService, public modalService: NgbModal, public homeFacade: HomeFacade, private logger: NGXLogger) {
+  constructor(private confirmationDialogService: ConfirmationDialogService, private modalService: NgbModal, private homeFacade: HomeFacade, private logger: NGXLogger, private toastr: ToastrService) {
     this.logger.debug('Loaded HomeComponent');
     //subscribe state to get latest data from app state
     this.homeFacade.getState().subscribe((state: AppState) => {
@@ -133,7 +135,9 @@ export class HomeComponent implements OnInit {
       }
     } else {
       //check if task already exits in other list then do not add
-      if (!(event.previousContainer.data.some(item => event.container.data.includes(item)))) {
+      if ((event.previousContainer.data.some(item => event.container.data.includes(item)))) {
+        this.toastr.error(this.taskExistsError, this.errorTitle);
+      } else {
         //drop into another list
         transferArrayItem(event.previousContainer.data,
           event.container.data,

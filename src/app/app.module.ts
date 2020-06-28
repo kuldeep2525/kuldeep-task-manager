@@ -1,11 +1,13 @@
 //MODULES
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { StoreModule } from '@ngrx/store';
+import { ToastrModule } from 'ngx-toastr';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 //COMPONENTS
@@ -31,13 +33,19 @@ import { taskReducer } from './state/app.reducer';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
-    DragDropModule,
-    NgbModule.forRoot(),
-    ReactiveFormsModule,
     StoreModule.forRoot({
       task: taskReducer
+    }),
+    FormsModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    NgbModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-center-center',
+      preventDuplicates: true,
     }),
     LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR })
   ],

@@ -38,8 +38,9 @@ export class AppConstants {
    * ERROR MESSGES
    */
     public static ERRORMESSGES = class {
+        public static ERRORTITLE = 'ERROR';
         public static TASKREQUIRED = 'Task is required';
-        public static TASKEXISTS = 'Task already Exists';
+        public static TASKEXISTS = 'Task already Exists in list';
     }
 
 }
