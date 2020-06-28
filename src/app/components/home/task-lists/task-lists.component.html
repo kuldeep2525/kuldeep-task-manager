@@ -5,8 +5,8 @@
     <div class="card-body">
       <h4 class="card-title" [innerHtml]="todoListLable"></h4>
 
-      <div class="card-text" cdkDropList [cdkDropListData]="todoList" (cdkDropListDropped)="onDropTask($event)">
-        <div class="task" *ngFor="let item of todoList;let i=inedx" cdkDrag>
+      <div id="todo" class="card-text" cdkDropList [cdkDropListData]="todoList" (cdkDropListDropped)="onDropTask($event)">
+        <div  class="task" *ngFor="let item of todoList;let i=inedx" cdkDrag>
           <div class="task-name">{{ item }}</div>
           <div class="remove-icon"><i class="fa fa-trash" (click)="onRemoveTask('todo',i)"> </i></div>
         </div>
@@ -22,7 +22,7 @@
     <div class="card-body">
       <h4 class="card-title" [innerHtml]="inProgressListLable"></h4>
 
-      <div class="card-text" cdkDropList [cdkDropListData]="inProgressList" (cdkDropListDropped)="onDropTask($event)">
+      <div id="inProgress" class="card-text" cdkDropList [cdkDropListData]="inProgressList" (cdkDropListDropped)="onDropTask($event)">
         <div class="task" *ngFor="let item of inProgressList;let i=inedx" cdkDrag>
           <div class="task-name">{{ item }}</div>
           <div class="remove-icon"><i class="fa fa-trash" (click)="onRemoveTask('inProgress',i)"> </i></div>
@@ -40,7 +40,7 @@
     <div class="card-body">
       <h4 class="card-title" [innerHtml]="doneListLable"></h4>
 
-      <div class="card-text" cdkDropList [cdkDropListData]="doneList" (cdkDropListDropped)="onDropTask($event)">
+      <div id="done" class="card-text" cdkDropList [cdkDropListData]="doneList" (cdkDropListDropped)="onDropTask($event)">
         <div class="task" *ngFor="let item of doneList;let i=inedx" cdkDrag>
           <div class="task-name">{{ item }}</div>
           <div class="remove-icon"><i class="fa fa-trash" (click)="onRemoveTask('done',i)"> </i></div>

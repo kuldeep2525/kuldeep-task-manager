@@ -23,7 +23,6 @@
     "@ngrx/store": "7.0.0",
     "@ng-bootstrap/ng-bootstrap": "2.0.0",
     "bootstrap": "^4.5.0",
-    "bulma": "^0.7.4",
     "core-js": "^2.5.4",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
