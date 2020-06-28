@@ -6,11 +6,12 @@ html,
 body {
   height: 100%;
   background: -webkit-linear-gradient(#13f7f4, #2af598);
+  overflow-y: auto;
 }
 
 html {
   background-size: cover;
-  overflow-y: auto !important;
+  
 }
 
 a:hover {
