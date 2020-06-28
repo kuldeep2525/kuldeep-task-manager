@@ -8,6 +8,7 @@ import { AddTaskDialogComponent } from '../dialogs/add-task-dialog/add-task-dial
 import { AppConstants } from '../../constants/app.constants';
 import { NGXLogger } from 'ngx-logger';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
     modalRef.result.then((result) => {
       if (!result.isError && result.task) {
         //update state after add task into lists
-        if ($event.selectedList == 'todo') {        
+        if ($event.selectedList == 'todo') {
           this.todoList.push(result.task);
           this.homeFacade.setTodoState(this.todoList);
           this.logger.info('onAddTask updated todoList', this.todoList);
@@ -131,33 +132,37 @@ export class HomeComponent implements OnInit {
         this.homeFacade.setDoneState(event.previousContainer.data);
       }
     } else {
-      //drop into another list
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
+      //check if task already exits in other list then do not add
+      if (!(event.previousContainer.data.some(item => event.container.data.includes(item)))) {
+        //drop into another list
+        transferArrayItem(event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex);
 
-      //update state of old list data (from which task selected)
-      if (event.previousContainer.id == 'todo') {
-        this.homeFacade.setTodoState(event.previousContainer.data);
-      }
-      if (event.previousContainer.id == 'inProgress') {
-        this.homeFacade.setInprogressState(event.previousContainer.data);
-      }
-      if (event.previousContainer.id == 'done') {
-        this.homeFacade.setDoneState(event.previousContainer.data);
+        //update state of old list data (from which task selected)
+        if (event.previousContainer.id == 'todo') {
+          this.homeFacade.setTodoState(event.previousContainer.data);
+        }
+        if (event.previousContainer.id == 'inProgress') {
+          this.homeFacade.setInprogressState(event.previousContainer.data);
+        }
+        if (event.previousContainer.id == 'done') {
+          this.homeFacade.setDoneState(event.previousContainer.data);
+        }
+
+        //update state of new list data (in which task dropped)
+        if (event.container.id == 'todo') {
+          this.homeFacade.setTodoState(event.container.data);
+        }
+        if (event.container.id == 'inProgress') {
+          this.homeFacade.setInprogressState(event.container.data);
+        }
+        if (event.container.id == 'done') {
+          this.homeFacade.setDoneState(event.container.data);
+        }
       }
 
-      //update state of new list data (in which task dropped)
-      if (event.container.id == 'todo') {
-        this.homeFacade.setTodoState(event.container.data);
-      }
-      if (event.container.id == 'inProgress') {
-        this.homeFacade.setInprogressState(event.container.data);
-      }
-      if (event.container.id == 'done') {
-        this.homeFacade.setDoneState(event.container.data);
-      }
     }
   }
 
