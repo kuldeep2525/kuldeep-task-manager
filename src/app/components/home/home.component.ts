@@ -71,8 +71,8 @@ export class HomeComponent implements OnInit {
           this.logger.info('onAddTask updated doneList', this.doneList);
         }
       }
-    }).catch((result) => {
-
+    }).catch((error) => {
+      this.logger.error('Error in fecthing result from add data Form', error);
     });
   }
 
