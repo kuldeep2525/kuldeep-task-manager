@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   doneList = [];
   appName = AppConstants.LABLES.APPNAME
   errorTitle = AppConstants.ERRORMESSGES.ERRORTITLE;
-  taskExistsError = AppConstants.ERRORMESSGES.TASKREQUIRED;
+  taskExistsError = AppConstants.ERRORMESSGES.TASKEXISTS;
 
   constructor(private confirmationDialogService: ConfirmationDialogService, private modalService: NgbModal, private homeFacade: HomeFacade, private logger: NGXLogger, private toastr: ToastrService) {
     this.logger.debug('Loaded HomeComponent');
