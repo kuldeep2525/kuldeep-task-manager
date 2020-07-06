@@ -22,6 +22,7 @@ import { ConfirmationDialogService } from './components/dialogs/confirmation-dia
 
 // REDUCER
 import { taskReducer } from './state/app.reducer';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { taskReducer } from './state/app.reducer';
     HomeComponent,
     ConfirmationDialogComponent,
     AddTaskDialogComponent,
-    TaskListsComponent
+    TaskListsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
